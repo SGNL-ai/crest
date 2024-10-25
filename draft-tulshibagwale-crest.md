@@ -71,6 +71,8 @@ The CREST architecture assumes the server holds the context across different req
 
 The REST architecture has been very successful and used almost universally in modern computing environments. However, it requires each request to carry the entire context of the request so that the server servicing the HTTP request can process it. The benefit of this approach is that each request from the same client can be serviced by different server-side instances, thereby making it easier to load-balance and provide better availability, reliability and response-time characteristics. As the amount of data in the context grows, this strategy, however, causes each request to be more expensive in terms of the network traffic and creates latency of its own.
 
+The Contextualized REST (CREST) architecture addresses this by enabling HTTP servers to cache independently addressed context items. One or more server-side instances can share the same cache, making it more efficient than carrying the context with each request. At the same time, the CREST architecture enables different collections of server-side instances to have different caches. This enables geographically or network separated instances to maintain different caches.
+
 # The Context Cache
 The Context Cache (CC) is an abstraction that assumes the server side components can all access a cache which can hold context across requests. This cache MAY be shared across one or more instances of the server side code.
 
@@ -120,12 +122,12 @@ To delete a CC Item, the HTTP client includes the request header named `CC-Delet
 ~~~ HTTP
 CC-DeleteItems ccii1,ccii3
 ~~~
-{: #fig-deleteitem-request title="Non-normative example of a CCII-DeleteItem Request Header}
+{: #fig-deleteitem-request title="Non-normative example of a CCII-DeleteItem Request Header"}
 
 ~~~ HTTP
 Deleted-CCII ccii1
 ~~~
-{: #fig-deleteitem-response title="Non-normative example of a Deleted-CCII Response Header}
+{: #fig-deleteitem-response title="Non-normative example of a Deleted-CCII Response Header"}
 
 # Architecture Notes
 This is a non-normative section.
