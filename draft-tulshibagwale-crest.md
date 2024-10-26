@@ -6,7 +6,7 @@ submissiontype: IETF
 
 docname: draft-ietf-crest-latest
 venue:
-  github: "SGNL/crest"
+  github: "SGNL-ai/crest"
   latest: ""
 
 title: The Contextualized REST Architecture
@@ -71,12 +71,12 @@ The CREST architecture assumes the server holds the context across different req
 
 # Introduction
 
-The REST architecture has been very successful and used almost universally in modern computing environments. However, it requires each request to carry the entire context of the request so that the server servicing the HTTP request can process it. The benefit of this approach is that each request from the same client can be serviced by different server-side instances, thereby making it easier to load-balance and provide better availability, reliability and response-time characteristics. As the amount of data in the context grows, this strategy, however, causes each request to be more expensive in terms of the network traffic and creates latency of its own.
+The REST architecture has been very successful and used almost universally in modern computing environments. However, it requires each request to carry the entire context of the request so that the server servicing the HTTP request can process it. A benefit of this approach is that each request from the same client can be serviced by different server-side instances, thereby making it easier to load-balance and provide better availability, reliability and response-time characteristics. As the amount of data in the context grows, this strategy, however, causes each request to be more expensive in terms of the network traffic and creates latency of its own.
 
 The Contextualized REST (CREST) architecture addresses this by enabling HTTP servers to cache independently addressed context items. One or more server-side instances can share the same cache, making it more efficient than carrying the context with each request. At the same time, the CREST architecture enables different collections of server-side instances to have different caches. This enables geographically or network separated instances to maintain different caches.
 
 # The Context Cache
-The Context Cache (CC) is an abstraction that assumes the server side components can all access a cache which can hold context across requests. This cache MAY be shared across one or more instances of the server side code.
+The Context Cache (CC) is an abstraction that assumes one or more server side components can access a cache which can hold context across requests.
 
 ## Cached Items
 The CC is organized as a collection of independent items. Each item can be created, read, updated and deleted independently. Items may expire at any time. Each Item is identified by a unique identifier called `CCII` (Context Cache Item Identifier). The CCII format is a Base64 encoded with URL and Filename Safe Alphabet as described in RFC4648 {{RFC4648}}.
